@@ -10,7 +10,7 @@ const FooterLayout = () => {
         </div>
         <div className="my-2">
           <a href="#" className="text-white">
-            &copy; 2021 Nazal Gusti Prastya
+            &copy; 2023 Nazal Gusti Prastya
           </a>
         </div>
         <div className="flex gap-x-3 my-2">
