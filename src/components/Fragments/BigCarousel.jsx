@@ -62,19 +62,19 @@ const BigCarousel = () => {
           upcomings.map((upcoming) => (
             <div className="w-full h-[70vh] lg:min-h-[100vh] relative z-30" key={upcoming.id}>
               <img src={urlImage + upcoming.backdrop_path} alt={upcoming.title} className="w-full h-full  bg-center  opacity-40" />
-              <div className=" absolute bottom-72 left-5 lg:bottom-52 lg:left-20 ">
+              <div className=" absolute bottom-60 left-5 lg:bottom-52 lg:left-20 ">
                 <p className=" text-white text-2xl lg:text-5xl font-bold  mt-5 mb-5">{upcoming.title}</p>
                 <span className="text-white bg-blue-600 px-3 py-1 text-[0.6rem] md:text-xs rounded-full mb-6">UpComing Movies</span>
                 <div className="flex mt-6">
                   <Link
                     to={`/detail/${upcoming.id}`}
-                    className="px-8 py-3 bg-red-600 text-sm lg:text-xl  mr-5 text-white font-bold rounded hover:bg-white hover:text-red-600 hover:border-red-600 hover:ring-red-600 duration-300 hover:shadow-white hover:shadow-md"
+                    className="px-5 py-2 md:px-8 md:py-3 bg-red-600 text-sm lg:text-xl  mr-5 text-white font-bold rounded hover:bg-white hover:text-red-600 hover:border-red-600 hover:ring-red-600 duration-300 hover:shadow-white hover:shadow-md"
                   >
                     See Detail
                   </Link>
                   <div className="flex flex-col text-white">
-                    <p>Realease : {formatDate(upcoming.release_date)}</p>
-                    <p>
+                    <p className="text-sm">Realease : {formatDate(upcoming.release_date)}</p>
+                    <p className="text-xs">
                       Vote : {upcoming.vote_average} ({upcoming.vote_count})
                     </p>
                   </div>

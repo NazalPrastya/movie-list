@@ -63,7 +63,7 @@ const DetailPage = () => {
           <div className="h-[60vh] lg:h-[90vh] relative">
             <img src={url + movie.backdrop_path} alt="" className="w-full h-full opacity-50  object-cover" />
             <div className="absolute -bottom-10 w-full bg-gradient-to-t from-zinc-900 to-transparent h-[60vh]"></div>
-            <div className="flex absolute -bottom-32 lg:left-20">
+            <div className="flex absolute -bottom-32 md:left-10 lg:left-20">
               <CardMovie id={movie.id}>
                 <CardMovie.Header image={movie.poster_path} title={movie.original_title} rating={movie.vote_average} />
               </CardMovie>
