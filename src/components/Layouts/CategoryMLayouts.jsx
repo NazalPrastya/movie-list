@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import CardMovie from '../Fragments/CardMovie';
-import Select from '../Elements/Select';
-import Option from '../Elements/Select/Option';
-import { getGenresList, getMovieList } from '../../services/movies.service';
+import { getTopRated } from '../../services/movies.service';
 
 const CategoryMLayouts = () => {
   const responsive = {
@@ -28,36 +26,23 @@ const CategoryMLayouts = () => {
   };
 
   const [movies, setMovies] = useState([]);
-  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    getMovieList((data) => {
+    getTopRated((data) => {
       setMovies(data.results);
     });
-    getGenresList((data) => {
-      setGenres(data.genres);
-    });
   }, []);
-
-  console.log(genres);
 
   return (
     <section className="py-20">
       <div className="flex flex-col justify-between mt-10 mx-20">
-        <h2 className="font-bold text-2xl text-white">Browse By Category</h2>
-        <Select onChange={({ target }) => console.log(target.option.value)}>
-          {genres.map((genre) => (
-            <Option key={genre.id} value={genre.id}>
-              {genre.name}
-            </Option>
-          ))}
-        </Select>
+        <h2 className="font-bold text-2xl text-white">Top Rated Movie</h2>
       </div>
       <div className="lg:container">
         <Carousel autoPlaySpeed={2500} showDots={true} responsive={responsive} swipeable={true} draggable={true} removeArrowOnDeviceType={['tablet', 'mobile']} keyBoardControl={true} className="py-10">
           {movies.map((movie) => (
             <CardMovie key={movie.id} id={movie.id}>
-              <CardMovie.Header image={movie.poster_path} title={movie.title} />
+              {movie.poster_path && <CardMovie.Header image={movie.poster_path} title={movie.title} rating={movie.media_type} />}
               <CardMovie.Body title={movie.title} rating={movie.vote_average + '(' + movie.vote_count + ')' + ' / 10'} date={movie.release_date} />
             </CardMovie>
           ))}

@@ -4,15 +4,25 @@ import Option from '../Elements/Select/Option';
 import { useEffect, useState } from 'react';
 import { getMovieList } from '../../services/movies.service';
 import { searchMovie } from '../../services/movies.service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const AllMovie = () => {
   const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
 
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1) {
+      setPage(newPage);
+    }
+  };
   useEffect(() => {
-    getMovieList((data) => {
+    getMovieList(page, (data) => {
       setMovies(data.results);
     });
-  }, []);
+  }, [page]);
+
+  // console.log(movies);
 
   const search = async (q) => {
     if (q.length > 3) {
@@ -21,32 +31,11 @@ const AllMovie = () => {
     }
   };
 
-  const options = [
-    {
-      id: 1,
-      opsi: 'Popular',
-    },
-    {
-      id: 2,
-      opsi: 'Upcoming',
-    },
-    {
-      id: 3,
-      opsi: 'Top Rating',
-    },
-  ];
-
   return (
     <section className="py-20">
       <div className="flex flex-col mt-10 mx-5 lg:mx-20">
         <h2 className=" font-bold text-2xl text-white">All Movies</h2>
-        <Select>
-          {options.map((option) => (
-            <Option key={option.id} option={option.opsi}>
-              {option.opsi}
-            </Option>
-          ))}
-        </Select>
+
         <input
           type="text"
           id="simple-search"
@@ -57,6 +46,15 @@ const AllMovie = () => {
         ></input>
       </div>
       <div className="lg:container">
+        <div className="flex justify-end mt-3 space-x-5">
+          <button onClick={() => handlePageChange(page - 1)}>
+            <FontAwesomeIcon icon={faArrowLeft} className="text-white text-3xl hover:text-yellow-300"></FontAwesomeIcon>
+          </button>
+          <span className="text-yellow-300   text-lg">{page}</span>
+          <button onClick={() => handlePageChange(page + 1)}>
+            <FontAwesomeIcon icon={faArrowRight} className="text-white text-3xl hover:text-yellow-300"></FontAwesomeIcon>
+          </button>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-center box-border">
           {movies.length > 0 &&
             movies.map((movie) => (

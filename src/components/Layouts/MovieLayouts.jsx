@@ -42,7 +42,7 @@ const MovieLayouts = () => {
           {trendings.length > 0 &&
             trendings.map((trending) => (
               <CardMovie key={trending.id} id={trending.id}>
-                <CardMovie.Header image={trending.poster_path} title={trending.title} rating={trending.vote_average} />
+                <CardMovie.Header image={trending.poster_path} title={trending.title} rating={trending.media_type} />
                 <CardMovie.Body title={trending.title} rating={trending.vote_average + '(' + trending.vote_count + ')' + ' / 10'} date={trending.release_date} />
               </CardMovie>
             ))}
