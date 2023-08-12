@@ -13,7 +13,7 @@ const Header = (props) => {
   const { image, title, rating } = props;
   const imageUrl = `https://image.tmdb.org/t/p/original/${image}`;
   return (
-    <div className="w-full shadow-md  rounded-lg relative">
+    <div className="w-full shadow-md  rounded-lg relative bg-slate-400">
       <span className="absolute right-0 bg-blue-800 text-white px-1 rounded text-sm py-1">⭐{rating}</span>
       <img src={imageUrl} alt={title} className="rounded-lg" />
     </div>
