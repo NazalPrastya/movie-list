@@ -5,18 +5,36 @@ import NavbarLayouts from '../components/Layouts/NavbarLayouts';
 import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDetailMovie } from '../services/detail.service';
+import { getCast } from '../services/movies.service';
+import { getTrailer } from '../services/movies.service';
 
 const DetailPage = () => {
   const { id } = useParams();
-  const [movie, setmovie] = useState({});
+  const [movie, setMovie] = useState({});
+  const [cast, setCast] = useState([]);
+  const [director, setDirector] = useState([]);
+  const [trailer, setTrailer] = useState([]);
   const url = 'https://image.tmdb.org/t/p/original/';
+  const embed = 'https://www.youtube.com/embed/';
 
   useEffect(() => {
+    // Mengambil detail film
     getDetailMovie(id, (data) => {
-      setmovie(data);
+      setMovie(data);
+    });
+    getCast(id, (data) => {
+      setCast(data.cast);
+    });
+    getCast(id, (data) => {
+      setDirector(data.crew);
+    });
+    getTrailer(id, (data) => {
+      setTrailer(data.results);
     });
   }, [id]);
-  console.log(movie);
+
+  console.log(trailer);
+
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -41,7 +59,7 @@ const DetailPage = () => {
     <Fragment>
       <NavbarLayouts></NavbarLayouts>
       {Object.keys(movie).length > 0 && (
-        <section className="">
+        <section className="relative">
           <div className="h-[60vh] lg:h-[90vh] relative">
             <img src={url + movie.backdrop_path} alt="" className="w-full h-full opacity-50  object-cover" />
             <div className="absolute -bottom-10 w-full bg-gradient-to-t from-zinc-900 to-transparent h-[60vh]"></div>
@@ -60,7 +78,17 @@ const DetailPage = () => {
                       </p>
                     ))}
                 </div>
-                <span className="text-white">⭐{movie.vote_average}</span>
+                <span className="text-white">
+                  ⭐{movie.vote_average} ({movie.vote_count}) / 10
+                </span>
+                <button
+                  data-modal-target="defaultModal"
+                  data-modal-toggle="defaultModal"
+                  type="click"
+                  className="bg-cyan-500 w-min px-2 py-1 rounded-lg text-white hover:bg-cyan-700 shadow-md shadow-cyan-400 hover:shadow-cyan-200 duration-200"
+                >
+                  Trailer
+                </button>
               </div>
             </div>
           </div>
@@ -70,18 +98,28 @@ const DetailPage = () => {
               <p className="text-white">{movie.overview}</p>
               <div className="flex">
                 <div className="mt-10 mr-28">
-                  <p className="font-bold text-white text-3xl">Story</p>
-                  <p className="text-white">John Cena</p>
+                  <p className="font-bold text-white text-3xl">Writer</p>
+                  {director.map((person) => (
+                    <p key={person.credit_id} className="text-white">
+                      {person.job === 'Writer' ? person.name : ''}
+                    </p>
+                  ))}
                 </div>
                 <div className="mt-10">
                   <p className="font-bold text-white text-3xl">Director</p>
-                  <p className="text-white">John Cena</p>
+                  {director.map((person) => (
+                    <p key={person.credit_id} className="text-white">
+                      {person.job === 'Director' ? person.name : ''}
+                    </p>
+                  ))}
                 </div>
               </div>
               <div className="mt-10">
                 <p className="font-bold text-white text-3xl">Cast</p>
                 <Carousel responsive={responsive}>
-                  <ActorCard name={movie.name} character={movie.character} image={movie.aImage} />
+                  {cast.map((person) => (
+                    <ActorCard key={person.id} name={person.name} character={person.character} image={url + person.profile_path} />
+                  ))}
                 </Carousel>
               </div>
             </div>
@@ -98,7 +136,7 @@ const DetailPage = () => {
                   </div>
                   <div className="my-4">
                     <p className="text-white text-2xl font-medium">Language</p>
-                    <span className="text-white">{movie.original_language}</span>
+                    <span className="text-white">{movie.original_language === 'en' ? 'English' : ''}</span>
                   </div>
                 </div>
                 <div className="w-1/2 lg:w-full">
@@ -117,6 +155,10 @@ const DetailPage = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div id="defaultModal" tabIndex="-1" aria-hidden="true" className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <iframe src={embed + trailer.key} frameBorder="0"></iframe>
           </div>
         </section>
       )}
