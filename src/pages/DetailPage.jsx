@@ -85,7 +85,11 @@ const DetailPage = () => {
                 <span className="text-white">
                   ⭐{movie.vote_average} ({movie.vote_count}) / 10
                 </span>
-                <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" className="bg-cyan-500 w-min px-2 py-1 rounded-lg text-white hover:bg-cyan-700 shadow-md shadow-cyan-400 hover:shadow-cyan-200 duration-200">
+                <button
+                  data-modal-target={`defaultModal-${movie.id}`}
+                  data-modal-toggle={`defaultModal-${movie.id}`}
+                  className="bg-cyan-500 w-min px-2 py-1 rounded-lg text-white hover:bg-cyan-700 shadow-md shadow-cyan-400 hover:shadow-cyan-200 duration-200"
+                >
                   Trailer
                 </button>
                 <Link to="/" className="mt-5 bg-blue-500 w-min rounded-md text-white px-2 text-sm">
@@ -159,7 +163,7 @@ const DetailPage = () => {
             </div>
           </div>
 
-          <div id="defaultModal" tabIndex="-1" aria-hidden="true" className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+          <div id={`defaultModal-${movie.id}`} tabIndex="-1" aria-hidden="true" className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             {trailer.map((trailerItem) => {
               if (trailerItem.name === 'Official Final Trailer' || trailerItem.name === 'Official Trailer' || trailerItem.type === 'Trailer') {
                 return (
