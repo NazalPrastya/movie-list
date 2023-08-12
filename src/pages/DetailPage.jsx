@@ -33,8 +33,6 @@ const DetailPage = () => {
     });
   }, [id]);
 
-  console.log(trailer);
-
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -81,12 +79,7 @@ const DetailPage = () => {
                 <span className="text-white">
                   ⭐{movie.vote_average} ({movie.vote_count}) / 10
                 </span>
-                <button
-                  data-modal-target="defaultModal"
-                  data-modal-toggle="defaultModal"
-                  type="click"
-                  className="bg-cyan-500 w-min px-2 py-1 rounded-lg text-white hover:bg-cyan-700 shadow-md shadow-cyan-400 hover:shadow-cyan-200 duration-200"
-                >
+                <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" className="bg-cyan-500 w-min px-2 py-1 rounded-lg text-white hover:bg-cyan-700 shadow-md shadow-cyan-400 hover:shadow-cyan-200 duration-200">
                   Trailer
                 </button>
               </div>
@@ -154,6 +147,41 @@ const DetailPage = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div id="defaultModal" tabIndex="-1" aria-hidden="true" className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div className="">
+              {trailer.map((trailerItem) => {
+                if (trailerItem.name === 'Official Final Trailer') {
+                  return (
+                    <iframe
+                      key={trailerItem.key}
+                      width="560"
+                      height="315"
+                      src={embed + trailerItem.key}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
+                  );
+                } else if (trailerItem.name === 'Official Trailer') {
+                  return (
+                    <iframe
+                      key={trailerItem.key}
+                      width="560"
+                      height="315"
+                      src={embed + trailerItem.key}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
+                  );
+                }
+                return null; // Jika bukan "Official Final Trailer", tidak ditampilkan
+              })}
             </div>
           </div>
         </section>
