@@ -9,7 +9,7 @@ const NavbarLayouts = () => {
     {
       id: 1,
       href: '/',
-      name: 'Home',
+      name: 'Movies',
     },
     {
       id: 2,
