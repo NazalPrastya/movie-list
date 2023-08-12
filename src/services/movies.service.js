@@ -12,7 +12,7 @@ export const getMovieList = async (page, callback) => {
 };
 export const getTopRated = async (callback) => {
   try {
-    const res = await axios.get(`${url}/movie/top_rated?api_key=${apikey}`);
+    const res = await axios.get(`${url}/movie/top_rated?api_key=${apikey}&page=1`);
     callback(res.data);
   } catch (err) {
     console.log(err);
@@ -24,18 +24,9 @@ export const searchMovie = async (q) => {
   return res.data;
 };
 
-export const getGenresList = async (callback) => {
-  try {
-    const res = await axios.get(`${url}/genre/movie/list?api_key=${apikey}`);
-    callback(res.data);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 export const getCast = async (id, callback) => {
   try {
-    const res = await axios.get(`${url}/movie/${id}/credits?api_key=${apikey}`);
+    const res = await axios.get(`${url}/movie/${id}/credits?api_key=${apikey}&page=1`);
     callback(res.data);
   } catch (err) {
     console.log(err);
@@ -44,7 +35,16 @@ export const getCast = async (id, callback) => {
 
 export const getTrailer = async (id, callback) => {
   try {
-    const res = await axios.get(`${url}/movie/${id}/videos?api_key=${apikey}`);
+    const res = await axios.get(`${url}/movie/${id}/videos?api_key=${apikey}&page=1`);
+    callback(res.data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getRecomendation = async (id, callback) => {
+  try {
+    const res = await axios.get(`${url}/movie/${id}/recommendations?api_key=${apikey}&page=1`);
     callback(res.data);
   } catch (err) {
     console.log(err);

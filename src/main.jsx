@@ -5,16 +5,25 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import LandingPage from './pages/landingPage.jsx';
 import DetailPage from './pages/DetailPage';
 import ErrorPage from './pages/ErrorPage';
+import TvPage from './pages/tvPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <LandingPage />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
   },
   {
     path: '/detail/:id',
     element: <DetailPage />,
+  },
+  {
+    path: '/tv',
+    element: <TvPage />,
+  },
+  {
+    path: '*',
+    element: <ErrorPage />,
   },
 ]);
 

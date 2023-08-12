@@ -6,7 +6,7 @@ const FooterLayout = () => {
     <footer className="bg-blue-950">
       <div className="flex flex-col justify-between items-center">
         <div className="my-2">
-          <img src="logo.png" alt="logo" />
+          <img src="/logo.png" alt="logo" />
         </div>
         <div className="my-2">
           <a href="#" className="text-white">

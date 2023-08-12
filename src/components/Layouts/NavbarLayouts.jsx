@@ -2,6 +2,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { searchMovie } from '../../services/movies.service';
 import { getMovieList } from '../../services/movies.service';
 import CardMovie from '../Fragments/CardMovie';
+import { Link } from 'react-router-dom';
 
 const NavbarLayouts = () => {
   const navs = [
@@ -12,7 +13,7 @@ const NavbarLayouts = () => {
     },
     {
       id: 2,
-      href: '#tv',
+      href: '/tv',
       name: 'Tv Series',
     },
   ];
@@ -72,9 +73,9 @@ const NavbarLayouts = () => {
                 <ul className="block lg:flex">
                   {navs.map((nav) => (
                     <li className="group" key={nav.id}>
-                      <a href={nav.href} className=" text-base text-white py-2 mx-8 hover:text-reddark  flex font-semibold  hover:border-b transition ease-linear">
+                      <Link to={nav.href} className=" text-base text-white py-2 mx-8 hover:text-reddark  flex font-semibold  hover:border-b transition ease-linear">
                         {nav.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>

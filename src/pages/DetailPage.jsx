@@ -5,8 +5,10 @@ import NavbarLayouts from '../components/Layouts/NavbarLayouts';
 import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDetailMovie } from '../services/detail.service';
-import { getCast } from '../services/movies.service';
+import { getCast, getRecomendation } from '../services/movies.service';
 import { getTrailer } from '../services/movies.service';
+import FooterLayout from '../components/Layouts/FooterLayout';
+import { Link } from 'react-router-dom';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -14,6 +16,7 @@ const DetailPage = () => {
   const [cast, setCast] = useState([]);
   const [director, setDirector] = useState([]);
   const [trailer, setTrailer] = useState([]);
+  const [recomendations, setRecomendations] = useState([]);
   const url = 'https://image.tmdb.org/t/p/original/';
   const embed = 'https://www.youtube.com/embed/';
 
@@ -31,6 +34,9 @@ const DetailPage = () => {
     getTrailer(id, (data) => {
       setTrailer(data.results);
     });
+    getRecomendation(id, (data) => {
+      setRecomendations(data.results);
+    });
   }, [id]);
 
   const responsive = {
@@ -44,11 +50,11 @@ const DetailPage = () => {
       items: 5,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 564 },
       items: 3,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 564, min: 0 },
       items: 2,
     },
   };
@@ -82,6 +88,9 @@ const DetailPage = () => {
                 <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" className="bg-cyan-500 w-min px-2 py-1 rounded-lg text-white hover:bg-cyan-700 shadow-md shadow-cyan-400 hover:shadow-cyan-200 duration-200">
                   Trailer
                 </button>
+                <Link to="/" className="mt-5 bg-blue-500 w-min rounded-md text-white px-2 text-sm">
+                  Back
+                </Link>
               </div>
             </div>
           </div>
@@ -175,13 +184,19 @@ const DetailPage = () => {
         </section>
       )}
       <div className="mt-5 container">
-        <h2 className="text-2xl font-bold text-white lett tracking-wide">Recomended Movies</h2>
-        <Carousel responsive={responsive}>
-          <CardMovie id={movie.id}>
-            <CardMovie.Header image={movie.poster_path} title={movie.original_title} rating={movie.vote_average} />
-          </CardMovie>
+        {recomendations.length > 0 && <h2 className="text-2xl font-bold text-white lett tracking-wide">Recomended Movies</h2>}
+        <Carousel responsive={responsive} swipeable={true} draggable={true} arrows={true} removeArrowOnDeviceType={['mobile']} keyBoardControl={true}>
+          {recomendations.length > 0 &&
+            recomendations.map((movie) => (
+              <CardMovie id={movie.id} key={movie.id}>
+                <CardMovie.Header image={movie.poster_path} title={movie.original_title} rating={movie.vote_average} />
+                <CardMovie.Body title={movie.title} rating={movie.vote_average + '(' + movie.vote_count + ')' + ' / 10'} date={movie.release_date} />
+              </CardMovie>
+            ))}
         </Carousel>
       </div>
+
+      <FooterLayout />
     </Fragment>
   );
 };
