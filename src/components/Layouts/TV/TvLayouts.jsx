@@ -41,7 +41,7 @@ const TvLayouts = () => {
         <Carousel autoPlaySpeed={3000} responsive={responsive} swipeable={true} draggable={true} infinite={true} autoPlay={true} removeArrowOnDeviceType={['tablet', 'mobile']} keyBoardControl={true} className="py-10">
           {trendings.length > 0 &&
             trendings.map((trending) => (
-              <CardMovie key={trending.id} id={trending.id}>
+              <CardMovie key={trending.id} link={`/tv/${trending.id}`}>
                 <CardMovie.Header image={trending.poster_path} title={trending.name} rating={trending.media_type} />
                 <CardMovie.Body title={trending.name} rating={trending.vote_average + '(' + trending.vote_count + ')' + ' / 10'} date={trending.first_air_date} />
               </CardMovie>

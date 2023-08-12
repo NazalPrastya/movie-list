@@ -67,7 +67,7 @@ const BigCarouselTv = () => {
                 <span className="text-white bg-blue-600 px-3 py-1 text-[0.6rem] md:text-xs rounded-full mb-6">On The Air Series</span>
                 <div className="flex mt-6">
                   <Link
-                    to={`/detail/${upcoming.id}`}
+                    to={`/tv/${upcoming.id}`}
                     className="px-5 py-2 md:px-8 md:py-3 bg-red-600 text-sm lg:text-xl  mr-5 text-white font-bold rounded hover:bg-white hover:text-red-600 hover:border-red-600 hover:ring-red-600 duration-300 hover:shadow-white hover:shadow-md"
                   >
                     See Detail

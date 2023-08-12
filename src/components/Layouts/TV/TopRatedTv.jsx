@@ -41,7 +41,7 @@ const TopRatedTv = () => {
       <div className="lg:container">
         <Carousel autoPlaySpeed={2500} showDots={true} responsive={responsive} swipeable={true} draggable={true} removeArrowOnDeviceType={['tablet', 'mobile']} keyBoardControl={true} className="py-10">
           {movies.map((movie) => (
-            <CardMovie key={movie.id} id={movie.id}>
+            <CardMovie key={movie.id} link={`/tv/${movie.id}`}>
               {movie.poster_path && <CardMovie.Header image={movie.poster_path} title={movie.name} rating={movie.media_type} />}
               <CardMovie.Body title={movie.name} rating={movie.vote_average + '(' + movie.vote_count + ')' + ' / 10'} date={movie.first_air_date} />
             </CardMovie>

@@ -16,7 +16,7 @@ const DetailTvPage = () => {
   const [director, setDirector] = useState([]);
   const [trailer, setTrailer] = useState([]);
   const [recomendations, setRecomendations] = useState([]);
-  const url = 'https://image.tmdb.org/t/p/original/';
+  const url = 'https://image.tmdb.org/t/p/original';
   const embed = 'https://www.youtube.com/embed/';
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const DetailTvPage = () => {
                 <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" className="bg-cyan-500 w-min px-2 py-1 rounded-lg text-white hover:bg-cyan-700 shadow-md shadow-cyan-400 hover:shadow-cyan-200 duration-200">
                   Trailer
                 </button>
-                <Link to="/" className="mt-5 bg-blue-500 w-min rounded-md text-white px-2 text-sm">
+                <Link to="/tv" className="mt-5 bg-blue-500 w-min rounded-md text-white px-2 text-sm">
                   Back
                 </Link>
               </div>
@@ -155,9 +155,9 @@ const DetailTvPage = () => {
         <Carousel responsive={responsive} swipeable={true} draggable={true} arrows={true} removeArrowOnDeviceType={['mobile']} keyBoardControl={true}>
           {recomendations.length > 0 &&
             recomendations.map((movie) => (
-              <CardMovie id={movie.id} key={movie.id}>
+              <CardMovie link={`/tv/${movie.id}`} key={movie.id}>
                 <CardMovie.Header image={movie.poster_path} title={movie.original_title} rating={movie.vote_average} />
-                <CardMovie.Body title={movie.title} rating={movie.vote_average + '(' + movie.vote_count + ')' + ' / 10'} date={movie.release_date} />
+                <CardMovie.Body title={movie.title} rating={movie.vote_average + '(' + movie.vote_count + ')' + ' / 10'} date={movie.first_air_date} />
               </CardMovie>
             ))}
         </Carousel>
