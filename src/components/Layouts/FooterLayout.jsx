@@ -1,4 +1,4 @@
-import { faGithub, faGithubAlt, faInstagram, faPinterest } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faGithubAlt, faInstagram, faPinterest, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const FooterLayout = () => {
@@ -17,11 +17,14 @@ const FooterLayout = () => {
           <a href="https://www.instagram.com/nazalprastya/?hl=id" target="_blank">
             <FontAwesomeIcon icon={faInstagram} className="text-2xl text-white hover:text-red-600"></FontAwesomeIcon>
           </a>
-          <a href="https://www.instagram.com/nazalprastya/?hl=id" target="_blank">
+          <a href="https://pin.it/4XAwA5b" target="_blank">
             <FontAwesomeIcon icon={faPinterest} className="text-2xl text-white hover:text-red-600"></FontAwesomeIcon>
           </a>
-          <a href="https://www.instagram.com/nazalprastya/?hl=id" target="_blank">
+          <a href="https://github.com/NazalPrastya" target="_blank">
             <FontAwesomeIcon icon={faGithub} className="text-2xl text-white hover:text-red-600"></FontAwesomeIcon>
+          </a>
+          <a href="https://www.youtube.com/@nazalprastya" target="_blank">
+            <FontAwesomeIcon icon={faYoutube} className="text-2xl text-white hover:text-red-600"></FontAwesomeIcon>
           </a>
         </div>
         <div className="text-white my-2">
