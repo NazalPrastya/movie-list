@@ -10,7 +10,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <LandingPage />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
   },
   {
     path: '/detail/:id',
