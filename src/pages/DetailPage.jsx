@@ -154,7 +154,7 @@ const DetailPage = () => {
             {trailer.map((trailerItem) => {
               if (trailerItem.name === 'Official Final Trailer' || trailerItem.name === 'Official Trailer' || trailerItem.type === 'Trailer') {
                 return (
-                  <div className="flex-wrap">
+                  <div className="flex-wrap" key={trailerItem.key}>
                     <iframe
                       className="max-w-md"
                       key={trailerItem.key}

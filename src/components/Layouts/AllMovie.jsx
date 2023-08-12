@@ -20,7 +20,6 @@ const AllMovie = () => {
       setMovies(query.results);
     }
   };
-  console.log(movies);
 
   const options = [
     {

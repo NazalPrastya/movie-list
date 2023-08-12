@@ -29,8 +29,6 @@ const CategoryMLayouts = () => {
 
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState(null);
-  const [filteredMovies, setFilteredMovies] = useState([]);
 
   useEffect(() => {
     getMovieList((data) => {
@@ -41,28 +39,15 @@ const CategoryMLayouts = () => {
     });
   }, []);
 
-  useEffect(() => {
-    if (!selectedGenre) {
-      setFilteredMovies(movies);
-      return;
-    }
-    const genreMovies = movies.filter((movie) => {
-      return movie.genre_ids.includes(selectedGenre.id);
-    });
-    setFilteredMovies(genreMovies);
-  }, [selectedGenre, movies]);
-
-  const handleGenre = (selectedGenre) => {
-    setSelectedGenre(selectedGenre);
-  };
+  console.log(genres);
 
   return (
     <section className="py-20">
       <div className="flex flex-col justify-between mt-10 mx-20">
         <h2 className="font-bold text-2xl text-white">Browse By Category</h2>
-        <Select>
+        <Select onChange={({ target }) => console.log(target.option.value)}>
           {genres.map((genre) => (
-            <Option key={genre.id} value={genre.id} onChange={() => handleGenre(genre)}>
+            <Option key={genre.id} value={genre.id}>
               {genre.name}
             </Option>
           ))}
@@ -70,7 +55,7 @@ const CategoryMLayouts = () => {
       </div>
       <div className="lg:container">
         <Carousel autoPlaySpeed={2500} showDots={true} responsive={responsive} swipeable={true} draggable={true} removeArrowOnDeviceType={['tablet', 'mobile']} keyBoardControl={true} className="py-10">
-          {filteredMovies.map((movie) => (
+          {movies.map((movie) => (
             <CardMovie key={movie.id} id={movie.id}>
               <CardMovie.Header image={movie.poster_path} title={movie.title} />
               <CardMovie.Body title={movie.title} rating={movie.vote_average + '(' + movie.vote_count + ')' + ' / 10'} date={movie.release_date} />
