@@ -73,7 +73,7 @@ const CategoryMLayouts = () => {
           {filteredMovies.map((movie) => (
             <CardMovie key={movie.id} id={movie.id}>
               <CardMovie.Header image={movie.poster_path} title={movie.title} />
-              <CardMovie.Body title={movie.title} rating={movie.vote_average} date={movie.release_date} />
+              <CardMovie.Body title={movie.title} rating={movie.vote_average + '(' + movie.vote_count + ')' + ' / 10'} date={movie.release_date} />
             </CardMovie>
           ))}
         </Carousel>

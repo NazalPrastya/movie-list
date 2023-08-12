@@ -47,7 +47,7 @@ const AllMovie = () => {
             movies.map((movie) => (
               <CardMovie key={movie.id} id={movie.id}>
                 <CardMovie.Header image={movie.poster_path} title={movie.title} rating={movie.vote_average} />
-                <CardMovie.Body title={movie.title} rating={movie.vote_average} date={movie.date} />
+                <CardMovie.Body title={movie.title} rating={movie.vote_average} date={movie.release_date} />
               </CardMovie>
             ))}
         </div>

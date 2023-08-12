@@ -43,7 +43,7 @@ const MovieLayouts = () => {
             trendings.map((trending) => (
               <CardMovie key={trending.id} id={trending.id}>
                 <CardMovie.Header image={trending.poster_path} title={trending.title} rating={trending.vote_average} />
-                <CardMovie.Body title={trending.title} rating={trending.vote_average} date={trending.release_date} />
+                <CardMovie.Body title={trending.title} rating={trending.vote_average + '(' + trending.vote_count + ')' + ' / 10'} date={trending.release_date} />
               </CardMovie>
             ))}
         </Carousel>
