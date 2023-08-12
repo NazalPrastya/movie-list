@@ -36,7 +36,7 @@ const TopRatedTv = () => {
   return (
     <section className="py-20">
       <div className="flex flex-col justify-between mt-10 mx-20">
-        <h2 className="font-bold text-2xl text-white">Top Rated Movie</h2>
+        <h2 className="font-bold text-2xl text-white">Top Rated Series</h2>
       </div>
       <div className="lg:container">
         <Carousel autoPlaySpeed={2500} showDots={true} responsive={responsive} swipeable={true} draggable={true} removeArrowOnDeviceType={['tablet', 'mobile']} keyBoardControl={true} className="py-10">

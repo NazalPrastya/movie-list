@@ -31,7 +31,7 @@ const AllTv = () => {
   return (
     <section className="py-20">
       <div className="flex flex-col mt-10 mx-5 lg:mx-20">
-        <h2 className=" font-bold text-2xl text-white">All Movies</h2>
+        <h2 className=" font-bold text-2xl text-white">All Series</h2>
 
         <input
           type="text"
