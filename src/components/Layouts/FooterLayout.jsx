@@ -9,7 +9,7 @@ const FooterLayout = () => {
           <img src="/logo.png" alt="logo" />
         </div>
         <div className="my-2">
-          <a href="#" className="text-white">
+          <a href="https://nazalprastya.github.io/portofolio-nazal/" target="_blank" className="text-white">
             &copy; 2023 Nazal Gusti Prastya
           </a>
         </div>
