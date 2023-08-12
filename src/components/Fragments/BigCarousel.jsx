@@ -42,20 +42,33 @@ const BigCarousel = () => {
   };
 
   return (
-    <section className="realative">
-      <div className="absolute -bottom-0 w-full bg-gradient-to-t from-zinc-900 to-transparent h-[30vh] z-10"></div>
-      <Carousel responsive={responsive} autoPlay={true} infinite={true}>
+    <section className="relative ">
+      <div className="absolute bottom-0 w-full bg-gradient-to-t from-zinc-900 to-transparent h-[15vh] z-10"></div>
+      <Carousel
+        responsive={responsive}
+        autoPlay={true}
+        infinite={true}
+        arrows={false}
+        showDots={true}
+        ssr={true}
+        additionalTransfrom={0}
+        swipeable={true}
+        draggable={true}
+        keyBoardControl={true}
+        itemClass="carousel-item-padding-bottom-40-px"
+        dotListClass="dotStyle z-40 active-dot-red"
+      >
         {upcomings.length > 0 &&
           upcomings.map((upcoming) => (
-            <div className="w-full h-[40vh] lg:min-h-[100vh] relative" key={upcoming.id}>
-              <img src={urlImage + upcoming.backdrop_path} alt="" className="w-full h-full object-center bg-center bg-fixed opacity-40" />
-              <div className="absolute bottom-52 left-40 z-40">
-                <p className=" text-white text-5xl font-bold  mt-5 mb-5">{upcoming.title}</p>
-                <span className="text-white bg-blue-600 px-3 py-1 text-xs rounded-full mb-6">UpComing Movies</span>
+            <div className="w-full h-[70vh] lg:min-h-[100vh] relative z-30" key={upcoming.id}>
+              <img src={urlImage + upcoming.backdrop_path} alt={upcoming.title} className="w-full h-full  bg-center  opacity-40" />
+              <div className=" absolute bottom-72 left-5 lg:bottom-52 lg:left-20 ">
+                <p className=" text-white text-2xl lg:text-5xl font-bold  mt-5 mb-5">{upcoming.title}</p>
+                <span className="text-white bg-blue-600 px-3 py-1 text-[0.6rem] md:text-xs rounded-full mb-6">UpComing Movies</span>
                 <div className="flex mt-6">
                   <Link
                     to={`/detail/${upcoming.id}`}
-                    className="px-8 py-3 bg-red-600 text-xl mr-5 text-white font-bold rounded hover:bg-white hover:text-red-600 hover:border-red-600 hover:ring-red-600 duration-300 hover:shadow-white hover:shadow-md"
+                    className="px-8 py-3 bg-red-600 text-sm lg:text-xl  mr-5 text-white font-bold rounded hover:bg-white hover:text-red-600 hover:border-red-600 hover:ring-red-600 duration-300 hover:shadow-white hover:shadow-md"
                   >
                     See Detail
                   </Link>

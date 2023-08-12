@@ -18,11 +18,11 @@ const CategoryMLayouts = () => {
       items: 5,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 564 },
       items: 3,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 564, min: 0 },
       items: 2,
     },
   };
@@ -68,8 +68,8 @@ const CategoryMLayouts = () => {
           ))}
         </Select>
       </div>
-      <div className="container">
-        <Carousel autoPlaySpeed={2500} showDots={true} responsive={responsive} swipeable={true} draggable={true} className="py-10">
+      <div className="lg:container">
+        <Carousel autoPlaySpeed={2500} showDots={true} responsive={responsive} swipeable={true} draggable={true} removeArrowOnDeviceType={['tablet', 'mobile']} keyBoardControl={true} className="py-10">
           {filteredMovies.map((movie) => (
             <CardMovie key={movie.id} id={movie.id}>
               <CardMovie.Header image={movie.poster_path} title={movie.title} />

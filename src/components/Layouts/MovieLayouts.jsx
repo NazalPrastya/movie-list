@@ -15,11 +15,11 @@ const responsive = {
     items: 5,
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
+    breakpoint: { max: 1024, min: 564 },
     items: 3,
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 564, min: 0 },
     items: 2,
   },
 };
@@ -37,8 +37,8 @@ const MovieLayouts = () => {
       <div className="flex justify-between mt-10">
         <h2 className="mx-20 font-bold text-2xl text-white">On Trending</h2>
       </div>
-      <div className="container">
-        <Carousel autoPlaySpeed={2500} responsive={responsive} swipeable={true} draggable={true} infinite={true} autoPlay={true} className="py-10">
+      <div className="lg:container">
+        <Carousel autoPlaySpeed={3000} responsive={responsive} swipeable={true} draggable={true} infinite={true} autoPlay={true} removeArrowOnDeviceType={['tablet', 'mobile']} keyBoardControl={true} className="py-10">
           {trendings.length > 0 &&
             trendings.map((trending) => (
               <CardMovie key={trending.id} id={trending.id}>

@@ -42,30 +42,29 @@ const DetailPage = () => {
       <NavbarLayouts></NavbarLayouts>
       {Object.keys(movie).length > 0 && (
         <section className="">
-          <div className="h-screen relative">
-            <img src={url + movie.backdrop_path} alt="" className="w-full h-full opacity-50" />
+          <div className="h-[60vh] lg:h-screen relative">
+            <img src={url + movie.backdrop_path} alt="" className="w-full h-full opacity-50  object-cover" />
             <div className="absolute -bottom-20 w-full bg-gradient-to-t from-zinc-900 to-transparent h-[60vh]"></div>
-          </div>
-          <div className="flex absolute -bottom-32 left-20">
-            <CardMovie>
-              <CardMovie.Header image={movie.poster_path} title={movie.original_title} rating={movie.vote_average} />
-            </CardMovie>
-            <div className="description py-5 flex flex-col justify-center">
-              <h1 className="text-xl text-white font-bold">{movie.title}</h1>
-              <div className="flex">
-                {movie.genres &&
-                  movie.genres.map((genre) => (
-                    <p key={genre.id} className="text-white ">
-                      {' '}
-                      {genre.name} |{' '}
-                    </p>
-                  ))}
+            <div className="flex absolute -bottom-32 lg:left-20">
+              <CardMovie>
+                <CardMovie.Header image={movie.poster_path} title={movie.original_title} rating={movie.vote_average} />
+              </CardMovie>
+              <div className="description py-5 flex flex-col justify-center">
+                <h1 className="text-xl text-white font-bold">{movie.title}</h1>
+                <div className="flex">
+                  {movie.genres &&
+                    movie.genres.map((genre) => (
+                      <p key={genre.id} className="text-white text-xs">
+                        {'  ' + genre.name + ' | '}
+                      </p>
+                    ))}
+                </div>
+                <span className="text-white">⭐{movie.vote_average}</span>
               </div>
-              <span className="text-white">⭐{movie.vote_average}</span>
             </div>
           </div>
           <div className="container pt-36 flex flex-wrap">
-            <div className="w-5/6">
+            <div className="w-full lg:w-5/6">
               <p className="font-bold text-white text-3xl">Overview</p>
               <p className="text-white">{movie.overview}</p>
               <div className="flex">
@@ -85,30 +84,36 @@ const DetailPage = () => {
                 </Carousel>
               </div>
             </div>
-            <div className="w-1/6">
-              <div className="my-4">
-                <p className="text-white text-2xl font-bold">Status</p>
-                <span className="text-white">{movie.status}</span>
-              </div>
-              <div className="my-4">
-                <p className="text-white text-2xl font-bold">Released Date</p>
-                <span className="text-white">{movie.release_date}</span>
-              </div>
-              <div className="my-4">
-                <p className="text-white text-2xl font-bold">Language</p>
-                <span className="text-white">{movie.original_language}</span>
-              </div>
-              <div className="my-4">
-                <p className="text-white text-2xl font-bold">Duration</p>
-                <span className="text-white">{movie.runtime} min</span>
-              </div>
-              <div className="my-4">
-                <p className="text-white text-2xl font-bold">Budget</p>
-                <span className="text-white">$ {movie.budget.toLocaleString('us-US', { styles: 'currency', currency: 'USD' })}</span>
-              </div>
-              <div className="my-4">
-                <p className="text-white text-2xl font-bold">Revenue</p>
-                <span className="text-white">$ {movie.revenue.toLocaleString('us-US', { styles: 'currency', currency: 'USD' })}</span>
+            <div className="w-full lg:w-1/6">
+              <div className="flex flex-wrap">
+                <div className="w-1/2 lg:w-full ">
+                  <div className="my-4">
+                    <p className="text-white text-2xl font-medium">Status</p>
+                    <span className="text-white">{movie.status}</span>
+                  </div>
+                  <div className="my-4">
+                    <p className="text-white text-2xl font-medium">Released Date</p>
+                    <span className="text-white">{movie.release_date}</span>
+                  </div>
+                  <div className="my-4">
+                    <p className="text-white text-2xl font-medium">Language</p>
+                    <span className="text-white">{movie.original_language}</span>
+                  </div>
+                </div>
+                <div className="w-1/2 lg:w-full">
+                  <div className="my-4">
+                    <p className="text-white text-2xl font-medium">Duration</p>
+                    <span className="text-white">{movie.runtime} min</span>
+                  </div>
+                  <div className="my-4">
+                    <p className="text-white text-2xl font-medium">Budget</p>
+                    <span className="text-white">$ {movie.budget.toLocaleString('us-US', { styles: 'currency', currency: 'USD' })}</span>
+                  </div>
+                  <div className="my-4">
+                    <p className="text-white text-2xl font-medium">Revenue</p>
+                    <span className="text-white">$ {movie.revenue.toLocaleString('us-US', { styles: 'currency', currency: 'USD' })}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

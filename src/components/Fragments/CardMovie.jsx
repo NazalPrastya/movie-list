@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const CardMovie = (props) => {
   const { children, id } = props;
   return (
-    <div className=" max-w-[13rem] mx-5  group mt-5  rounded-lg relative hover:scale-110 duration-300  ease-linear overflow-hidden shadow-red-400 shadow">
+    <div className=" max-w-[10rem] mx-5  group mt-5  rounded-lg relative hover:scale-110 duration-300  ease-linear overflow-hidden shadow-red-400 shadow">
       <Link to={`/detail/${id}`}>{children}</Link>
     </div>
   );

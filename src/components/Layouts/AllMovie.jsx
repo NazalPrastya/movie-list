@@ -41,14 +41,16 @@ const AllMovie = () => {
           ))}
         </Select>
       </div>
-      <div className="flex flex-wrap justify-center">
-        {movies.length > 0 &&
-          movies.map((movie) => (
-            <CardMovie key={movie.id} id={movie.id}>
-              <CardMovie.Header image={movie.poster_path} title={movie.title} rating={movie.vote_average} />
-              <CardMovie.Body title={movie.title} rating={movie.vote_average} date={movie.date} />
-            </CardMovie>
-          ))}
+      <div className="lg:container">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-center box-border">
+          {movies.length > 0 &&
+            movies.map((movie) => (
+              <CardMovie key={movie.id} id={movie.id}>
+                <CardMovie.Header image={movie.poster_path} title={movie.title} rating={movie.vote_average} />
+                <CardMovie.Body title={movie.title} rating={movie.vote_average} date={movie.date} />
+              </CardMovie>
+            ))}
+        </div>
       </div>
     </section>
   );
