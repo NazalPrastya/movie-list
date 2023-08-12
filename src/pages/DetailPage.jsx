@@ -151,11 +151,12 @@ const DetailPage = () => {
           </div>
 
           <div id="defaultModal" tabIndex="-1" aria-hidden="true" className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div className="">
-              {trailer.map((trailerItem) => {
-                if (trailerItem.name === 'Official Final Trailer') {
-                  return (
+            {trailer.map((trailerItem) => {
+              if (trailerItem.name === 'Official Final Trailer' || trailerItem.name === 'Official Trailer' || trailerItem.type === 'Trailer') {
+                return (
+                  <div className="flex-wrap">
                     <iframe
+                      className="max-w-md"
                       key={trailerItem.key}
                       width="560"
                       height="315"
@@ -165,24 +166,11 @@ const DetailPage = () => {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                     ></iframe>
-                  );
-                } else if (trailerItem.name === 'Official Trailer') {
-                  return (
-                    <iframe
-                      key={trailerItem.key}
-                      width="560"
-                      height="315"
-                      src={embed + trailerItem.key}
-                      title="YouTube video player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    ></iframe>
-                  );
-                }
-                return null; // Jika bukan "Official Final Trailer", tidak ditampilkan
-              })}
-            </div>
+                  </div>
+                );
+              }
+              return null; // Don't display anything if the conditions are not met
+            })}
           </div>
         </section>
       )}
