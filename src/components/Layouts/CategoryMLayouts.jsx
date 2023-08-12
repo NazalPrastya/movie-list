@@ -35,7 +35,7 @@ const CategoryMLayouts = () => {
 
   return (
     <section className="py-20">
-      <div className="flex flex-col justify-between mt-10 mx-20">
+      <div className="flex flex-col justify-between mt-10 mx-2 lg:mx-20">
         <h2 className="font-bold text-2xl text-white">Top Rated Movie</h2>
       </div>
       <div className="lg:container">
