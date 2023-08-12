@@ -42,20 +42,21 @@ const DetailPage = () => {
       <NavbarLayouts></NavbarLayouts>
       {Object.keys(movie).length > 0 && (
         <section className="">
-          <div className="h-[60vh] lg:h-screen relative">
+          <div className="h-[60vh] lg:h-[90vh] relative">
             <img src={url + movie.backdrop_path} alt="" className="w-full h-full opacity-50  object-cover" />
-            <div className="absolute -bottom-20 w-full bg-gradient-to-t from-zinc-900 to-transparent h-[60vh]"></div>
+            <div className="absolute -bottom-10 w-full bg-gradient-to-t from-zinc-900 to-transparent h-[60vh]"></div>
             <div className="flex absolute -bottom-32 lg:left-20">
-              <CardMovie>
+              <CardMovie id={movie.id}>
                 <CardMovie.Header image={movie.poster_path} title={movie.original_title} rating={movie.vote_average} />
               </CardMovie>
               <div className="description py-5 flex flex-col justify-center">
                 <h1 className="text-xl text-white font-bold">{movie.title}</h1>
-                <div className="flex">
+                <div className="flex justify-start">
                   {movie.genres &&
                     movie.genres.map((genre) => (
                       <p key={genre.id} className="text-white text-xs">
-                        {'  ' + genre.name + ' | '}
+                        {' '}
+                        {genre.name + ' | '}
                       </p>
                     ))}
                 </div>
