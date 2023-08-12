@@ -35,7 +35,7 @@ const MovieLayouts = () => {
   return (
     <Fragment>
       <div className="flex justify-between mt-10">
-        <h2 className=" mx-3 lg:mx-20 font-bold text-2xl text-white">On Trending</h2>
+        <h2 className=" mx-5 lg:mx-20 font-bold text-2xl text-white">On Trending</h2>
       </div>
       <div className="lg:container">
         <Carousel autoPlaySpeed={3000} responsive={responsive} swipeable={true} draggable={true} infinite={true} autoPlay={true} removeArrowOnDeviceType={['tablet', 'mobile']} keyBoardControl={true} className="py-10">
