@@ -4,13 +4,12 @@ import ActorCard from '../components/Fragments/ActorCard';
 import NavbarLayouts from '../components/Layouts/NavbarLayouts';
 import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getDetailMovie } from '../services/detail.service';
-import { getCast, getRecomendation } from '../services/movies.service';
-import { getTrailer } from '../services/movies.service';
+
 import FooterLayout from '../components/Layouts/FooterLayout';
 import { Link } from 'react-router-dom';
+import { getCastTv, getDetailTv, getRecomendationTv, getTrailerTv } from '../services/series.service';
 
-const DetailPage = () => {
+const DetailTvPage = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
   const [cast, setCast] = useState([]);
@@ -22,19 +21,19 @@ const DetailPage = () => {
 
   useEffect(() => {
     // Mengambil detail film
-    getDetailMovie(id, (data) => {
+    getDetailTv(id, (data) => {
       setMovie(data);
     });
-    getCast(id, (data) => {
+    getCastTv(id, (data) => {
       setCast(data.cast);
     });
-    getCast(id, (data) => {
+    getCastTv(id, (data) => {
       setDirector(data.crew);
     });
-    getTrailer(id, (data) => {
+    getTrailerTv(id, (data) => {
       setTrailer(data.results);
     });
-    getRecomendation(id, (data) => {
+    getRecomendationTv(id, (data) => {
       setRecomendations(data.results);
     });
   }, [id]);
@@ -69,10 +68,10 @@ const DetailPage = () => {
             <div className="absolute -bottom-10 w-full bg-gradient-to-t from-zinc-900 to-transparent h-[60vh]"></div>
             <div className="flex absolute -bottom-32 md:left-10 lg:left-20">
               <CardMovie id={movie.id}>
-                <CardMovie.Header image={movie.poster_path} title={movie.original_title} rating={movie.vote_average} />
+                <CardMovie.Header image={movie.poster_path} title={movie.original_name} rating={movie.vote_average} />
               </CardMovie>
               <div className="description py-5 flex flex-col justify-center">
-                <h1 className="text-xl text-white font-bold">{movie.title}</h1>
+                <h1 className="text-xl text-white font-bold">{movie.name}</h1>
                 <div className="flex justify-start">
                   {movie.genres &&
                     movie.genres.map((genre) => (
@@ -98,24 +97,7 @@ const DetailPage = () => {
             <div className="w-full lg:w-5/6">
               <p className="font-bold text-white text-3xl">Overview</p>
               <p className="text-white">{movie.overview}</p>
-              <div className="flex">
-                <div className="mt-10 mr-28">
-                  <p className="font-bold text-white text-3xl">Writer</p>
-                  {director.map((person) => (
-                    <p key={person.credit_id} className="text-white">
-                      {person.job === 'Writer' ? person.name : ''}
-                    </p>
-                  ))}
-                </div>
-                <div className="mt-10">
-                  <p className="font-bold text-white text-3xl">Director</p>
-                  {director.map((person) => (
-                    <p key={person.credit_id} className="text-white">
-                      {person.job === 'Director' ? person.name : ''}
-                    </p>
-                  ))}
-                </div>
-              </div>
+
               <div className="mt-10">
                 <p className="font-bold text-white text-3xl">Cast</p>
                 <Carousel responsive={responsive}>
@@ -127,33 +109,18 @@ const DetailPage = () => {
             </div>
             <div className="w-full lg:w-1/6">
               <div className="flex flex-wrap">
-                <div className="w-1/2 lg:w-full ">
-                  <div className="my-4">
-                    <p className="text-white text-2xl font-medium">Status</p>
-                    <span className="text-white">{movie.status}</span>
-                  </div>
-                  <div className="my-4">
-                    <p className="text-white text-2xl font-medium">Released Date</p>
-                    <span className="text-white">{movie.release_date}</span>
-                  </div>
-                  <div className="my-4">
-                    <p className="text-white text-2xl font-medium">Language</p>
-                    <span className="text-white">{movie.original_language === 'en' ? 'English' : ''}</span>
-                  </div>
+                <div className="my-4">
+                  <p className="text-white text-2xl font-medium">Status</p>
+                  <span className="text-white">{movie.status}</span>
                 </div>
-                <div className="w-1/2 lg:w-full">
-                  <div className="my-4">
-                    <p className="text-white text-2xl font-medium">Duration</p>
-                    <span className="text-white">{movie.runtime} min</span>
-                  </div>
-                  <div className="my-4">
-                    <p className="text-white text-2xl font-medium">Budget</p>
-                    <span className="text-white">$ {movie.budget.toLocaleString('us-US', { styles: 'currency', currency: 'USD' })}</span>
-                  </div>
-                  <div className="my-4">
-                    <p className="text-white text-2xl font-medium">Revenue</p>
-                    <span className="text-white">$ {movie.revenue.toLocaleString('us-US', { styles: 'currency', currency: 'USD' })}</span>
-                  </div>
+                <div className="my-4">
+                  <p className="text-white text-2xl font-medium">Released Date</p>
+                  <span className="text-white">{movie.first_air_date}</span>
+                </div>
+
+                <div className="my-4">
+                  <p className="text-white text-2xl font-medium">Episode</p>
+                  <span className="text-white">{movie.last_episode_to_air.episode_number} Episode</span>
                 </div>
               </div>
             </div>
@@ -188,7 +155,7 @@ const DetailPage = () => {
         <Carousel responsive={responsive} swipeable={true} draggable={true} arrows={true} removeArrowOnDeviceType={['mobile']} keyBoardControl={true}>
           {recomendations.length > 0 &&
             recomendations.map((movie) => (
-              <CardMovie link={`/detail/${movie.id}`} key={movie.id}>
+              <CardMovie id={movie.id} key={movie.id}>
                 <CardMovie.Header image={movie.poster_path} title={movie.original_title} rating={movie.vote_average} />
                 <CardMovie.Body title={movie.title} rating={movie.vote_average + '(' + movie.vote_count + ')' + ' / 10'} date={movie.release_date} />
               </CardMovie>
@@ -201,4 +168,4 @@ const DetailPage = () => {
   );
 };
 
-export default DetailPage;
+export default DetailTvPage;

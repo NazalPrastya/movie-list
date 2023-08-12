@@ -41,7 +41,7 @@ const MovieLayouts = () => {
         <Carousel autoPlaySpeed={3000} responsive={responsive} swipeable={true} draggable={true} infinite={true} autoPlay={true} removeArrowOnDeviceType={['tablet', 'mobile']} keyBoardControl={true} className="py-10">
           {trendings.length > 0 &&
             trendings.map((trending) => (
-              <CardMovie key={trending.id} id={trending.id}>
+              <CardMovie key={trending.id} link={`/detail/${trending.id}`}>
                 <CardMovie.Header image={trending.poster_path} title={trending.title} rating={trending.media_type} />
                 <CardMovie.Body title={trending.title} rating={trending.vote_average + '(' + trending.vote_count + ')' + ' / 10'} date={trending.release_date} />
               </CardMovie>

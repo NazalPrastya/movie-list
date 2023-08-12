@@ -1,10 +1,10 @@
 import 'boxicons';
 import { Link } from 'react-router-dom';
 const CardMovie = (props) => {
-  const { children, id } = props;
+  const { children, link } = props;
   return (
     <div className=" max-w-[12rem] mx-5  group mt-5  rounded-lg relative hover:scale-105 duration-300  ease-linear overflow-hidden ">
-      <Link to={`/detail/${id}`}>{children}</Link>
+      <Link to={link}>{children}</Link>
     </div>
   );
 };

@@ -41,7 +41,7 @@ const CategoryMLayouts = () => {
       <div className="lg:container">
         <Carousel autoPlaySpeed={2500} showDots={true} responsive={responsive} swipeable={true} draggable={true} removeArrowOnDeviceType={['tablet', 'mobile']} keyBoardControl={true} className="py-10">
           {movies.map((movie) => (
-            <CardMovie key={movie.id} id={movie.id}>
+            <CardMovie key={movie.id} link={`/detail/${movie.id}`}>
               {movie.poster_path && <CardMovie.Header image={movie.poster_path} title={movie.title} rating={movie.media_type} />}
               <CardMovie.Body title={movie.title} rating={movie.vote_average + '(' + movie.vote_count + ')' + ' / 10'} date={movie.release_date} />
             </CardMovie>

@@ -6,6 +6,7 @@ import LandingPage from './pages/landingPage.jsx';
 import DetailPage from './pages/DetailPage';
 import ErrorPage from './pages/ErrorPage';
 import TvPage from './pages/tvPage';
+import DetailTvPage from './pages/DetailTvPage';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/tv',
     element: <TvPage />,
+  },
+  {
+    path: '/tv/:id',
+    element: <DetailTvPage />,
   },
   {
     path: '*',
