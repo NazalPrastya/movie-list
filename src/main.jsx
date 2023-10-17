@@ -7,7 +7,7 @@ import DetailPage from './pages/DetailPage';
 import ErrorPage from './pages/ErrorPage';
 import TvPage from './pages/tvPage';
 import DetailTvPage from './pages/DetailTvPage';
-
+import { Analytics } from '@vercel/analytics/react';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -34,6 +34,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <Analytics />
     <RouterProvider router={router} />
   </React.StrictMode>
 );
